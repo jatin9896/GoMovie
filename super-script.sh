@@ -2,6 +2,8 @@
 
 sbt assembly
 
+docker network create mynetwork
+
 docker build -t img_api ./api
 
 docker build -t img_selector ./selector

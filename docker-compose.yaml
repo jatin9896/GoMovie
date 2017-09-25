@@ -1,18 +1,32 @@
-version: '3.3'
+version: '3'
+
 services:
+
  api:  
   image: img_api
-  container_name: api
+  container_name: my_api
   ports:
     - "9001:9001"
+  networks:
+    - default
+
  selector:  
   image: img_selector
-  container_name: selector
+  container_name: my_selector
   ports:
     - "9002:9002"
+  networks:
+    - default
+ 
  notifier:  
   image: img_notifier
-  container_name: notifier
+  container_name: my_notifier
   ports:
     - "9003:9003"
- 
+  networks:
+    - default
+
+networks:
+    default:
+      external:
+        name: mynetwork
