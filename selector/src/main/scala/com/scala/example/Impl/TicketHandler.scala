@@ -5,7 +5,7 @@ import com.knoldus.example.services.ConfServiceImpl
 import org.slf4j.LoggerFactory
 
 class TicketHandler {
-  val cluster = Cluster.builder().addContactPoint(ConfServiceImpl.readString("localhost")).build()
+  val cluster = Cluster.builder().addContactPoint(ConfServiceImpl.readString("cassandrahost")).build()
   val logger = LoggerFactory.getLogger(this.getClass)
   val session = cluster.connect("cinemadb")
 
