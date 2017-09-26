@@ -37,7 +37,7 @@ class MailSendingActor extends Actor with ActorLogging {
     if ((addressArray != null) && (addressArray.length > 0)) {
       message.setRecipients(Message.RecipientType.TO, addressArray)
     }
-    transport.connect("smtp.gmail.com", sender, ConfServiceImpl.readString("password"))
+    transport.connect("smtp.gmail.com", sender, "moviego003")
     transport.sendMessage(message, message.getAllRecipients)
     logger.info("Mail send !!")
   }

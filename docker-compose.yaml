@@ -1,12 +1,21 @@
 version: '3'
 
 services:
+ cassandra:
+  image: cassandra
+  container_name: my_cassandra
+  networks:
+    - default
+
 
  api:  
   image: img_api
   container_name: my_api
   ports:
     - "9001:9001"
+  environment:
+    - API_SERVICE_IP=my_api:9001
+    - SELECTOR_SERVICE_IP=my_selector:9002
   networks:
     - default
 
@@ -15,14 +24,22 @@ services:
   container_name: my_selector
   ports:
     - "9002:9002"
+  environment:
+    - SELECTOR_SERVICE_IP=my_selector:9002
+    - NOTIFIER_SERVICE_IP=my_notifier:9003
+    - CASSANDRA_HOST=my_cassandra
   networks:
     - default
+  links:
+    - cassandra:my_cassandra
  
  notifier:  
   image: img_notifier
   container_name: my_notifier
   ports:
     - "9003:9003"
+  environment:
+    - NOTIFIER_SERVICE_IP=my_notifier:9003
   networks:
     - default
 
