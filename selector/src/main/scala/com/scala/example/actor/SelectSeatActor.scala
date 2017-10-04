@@ -2,8 +2,8 @@ package com.scala.example.selector.actor
 
 import akka.actor.{Actor, ActorLogging, ActorSystem, Props}
 import com.knoldus.example.models.Ticket
+import com.scala.example.Impl.TicketHandlerSql
 import com.scala.example.actor.InvokeNotifierActor
-import com.scala.example.selector.Impl.TicketHandler
 
 
 class SelectSeatActor extends Actor with ActorLogging {
@@ -11,7 +11,7 @@ class SelectSeatActor extends Actor with ActorLogging {
   val invokeNotifierSystem = system.actorOf(InvokeNotifierActor.props, "invoke-notifier")
   override def receive: PartialFunction[Any, Unit] = {
     case (mailId: String, movieName: String, count: Int) =>
-      val ticketHandler=new TicketHandler
+      val ticketHandler=new TicketHandlerSql
       val ticketList=ticketHandler.selectTicket(movieName,count)
       sender() ! Ticket(movieName, ticketList)
       invokeNotifierSystem ! (Ticket(movieName,ticketList),mailId)

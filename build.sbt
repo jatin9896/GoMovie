@@ -23,7 +23,7 @@ lazy val api = BaseProject("api").settings(
     ++ testClassifierDependencies(Nil)).dependsOn(common)
 
 lazy val selector = BaseProject("selector").settings(
-  libraryDependencies ++= compileDependencies(akkaHttp.value ++ akkaJson.value ++ cassandra.value)
+  libraryDependencies ++= compileDependencies(akkaHttp.value ++ akkaJson.value ++ cassandra.value ++ sqlJdbc.value)
     ++ testClassifierDependencies(Nil)).dependsOn(common)
   .settings(sbtAssemblySettings: _*)
 

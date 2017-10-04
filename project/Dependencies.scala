@@ -48,4 +48,10 @@ object Dependencies {
   def loggers=Def.setting{
     "org.slf4j" % "slf4j-api" % loggerVersion :: "org.slf4j" % "slf4j-simple" % "1.7.25" :: Nil
   }
+
+  def sqlJdbc=Def.setting{
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+     "mysql" % "mysql-connector-java" % "5.1.16" :: Nil
+
+  }
 }
