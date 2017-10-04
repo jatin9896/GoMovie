@@ -25,6 +25,7 @@ class MailSendingActor extends Actor with ActorLogging {
     properties.put("mail.smtp.auth", "true")
     properties.put("mail.smtp.starttls.enable", "true")
     val sender=ConfServiceImpl.readString("senderId")
+    val password=ConfServiceImpl.readString("mailPassword")
     val session = Session.getDefaultInstance(properties, null)
     val transport = session.getTransport("smtp")
 
@@ -37,7 +38,7 @@ class MailSendingActor extends Actor with ActorLogging {
     if ((addressArray != null) && (addressArray.length > 0)) {
       message.setRecipients(Message.RecipientType.TO, addressArray)
     }
-    transport.connect("smtp.gmail.com", sender, "moviego003")
+    transport.connect("smtp.gmail.com", sender, password)
     transport.sendMessage(message, message.getAllRecipients)
     logger.info("Mail send !!")
   }
