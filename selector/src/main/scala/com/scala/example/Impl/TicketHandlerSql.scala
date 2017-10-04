@@ -16,7 +16,7 @@ class TicketHandlerSql {
     val driver = "com.mysql.jdbc.Driver"
     val url = ConfServiceImpl.readString("dbUrl")
     val username = ConfServiceImpl.readString("dbUserName")
-    val password = "vPYHTjEL6n"
+    val password = ConfServiceImpl.readString("dbpassword")
     var seatLists = new ListBuffer[String]()
 
     // there's probably a better way to do this
