@@ -29,7 +29,7 @@ class TicketHandlerSql {
 
       // create the statement, and run the select query
       val statement = connection.createStatement()
-      val resultSet = statement.executeQuery(s"select seatid from sql12196427.cinema where movieName = '${movieName}' and Status ='nb' limit ${ticketCount} ")
+      val resultSet = statement.executeQuery(s"select seatid from sql12198358.cinema where movieName = '${movieName}' and Status ='nb' limit ${ticketCount} ")
       while ( resultSet.next() ) {
         val seatList = resultSet.getString("seatid")
         seatLists+=seatList

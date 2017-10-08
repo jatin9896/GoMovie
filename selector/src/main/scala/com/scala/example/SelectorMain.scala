@@ -1,4 +1,4 @@
-package com.scala.example
+package com.scala.exagitmple
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.server.{Directives, HttpApp, Route}
@@ -6,6 +6,7 @@ import akka.pattern.ask
 import akka.util.Timeout
 import com.knoldus.example.models.Ticket
 import com.knoldus.example.services.ConfServiceImpl
+import com.scala.example.JsonSupport
 import com.scala.example.selector.actor.SelectSeatActor
 
 import scala.concurrent.{Await, Future}
